@@ -138,13 +138,13 @@ $limit = 2;
 //Need to do the following below to use LIMIT which is banned by default
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$sql = 'SELECT * FROM posts WHERE author = ?';
+$sql = 'SELECT * FROM posts WHERE author = ? LIMIT ?';
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$author, $limit]);
 $posts = $stmt->fetchAll();
 
 echo '<br> Show only 2 items by Mark <br>';
 foreach ($posts as $post) {
-    echo $post->title . ' by ' . $post->author . '<br>';
+    echo $post->title . '<br>';
 }
 ?>
